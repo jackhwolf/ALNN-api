@@ -1,0 +1,9 @@
+Untitled.ipynb
+**/venv
+**/.ipynb_checkpoints
+**/__pycache__
+**/.terraform
+**/*.tfstate
+**/*.tfstate.backup
+**/*.out
+**/Results
