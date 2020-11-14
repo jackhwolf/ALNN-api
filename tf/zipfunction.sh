@@ -2,7 +2,9 @@
 
 pushd ../  # back into function source code dir
 
-rm function.zip 
+if [[ -f function.zip ]]; then
+    rm function.zip 
+fi
 
 cd venv/lib/python3.8/site-packages  
                                

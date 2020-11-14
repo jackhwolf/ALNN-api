@@ -1,9 +1,10 @@
 #!/bin/bash
 
-terraform fmt
-terraform validate
 
 ./zipfunction.sh
+
+terraform fmt
+terraform validate
 
 gitid="$(git rev-parse HEAD)"
 var="-var gitid="$gitid
