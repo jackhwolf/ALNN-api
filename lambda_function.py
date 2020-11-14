@@ -88,6 +88,3 @@ def lambda_handler(event, context):
         'body': body
     }
     return out
-
-if __name__ == "__main__":
-    print(lambda_handler({}, {}))
