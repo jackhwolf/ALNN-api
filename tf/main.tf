@@ -61,6 +61,11 @@ resource "aws_iam_role_policy_attachment" "lambda_policy_atch" {
   policy_arn = aws_iam_policy.lambda_policy.arn
 }
 
+resource "aws_iam_role_policy_attachment" "lambdaexec_policy_atch" {
+  role       = aws_iam_role.lambda_code_iam.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+}
+
 
 resource "aws_lambda_permission" "lambda_alb_permission" {
   statement_id  = "AllowExecutionFromAlb"
