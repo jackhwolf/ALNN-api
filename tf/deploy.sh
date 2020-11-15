@@ -1,5 +1,9 @@
 #!/bin/bash
 
+pushd ../
+git add .
+git commit -m "work"
+popd
 
 ./zipfunction.sh
 

@@ -46,7 +46,7 @@ class App:
         out['Max_Loss'] = np.round(row['analytics']['max_loss'], 3)
         out['Avg_Loss'] = np.round(row['analytics']['avg_loss'], 3)
         out['Data'] = row['input']['data']
-        out['Data_Args'] = '\n'.join([f"{k}: {v}" for k, v in row['input']['data_args'].items()])
+        out['Data_Args'] = ', '.join([v for _, v in row['input']['data_args'].items()])
         out['Animation'] = self.get_obj_url(self.buckets['animations'], row['cloud_graphs']['animation_key'])
         return out
 
