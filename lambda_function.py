@@ -38,6 +38,7 @@ class App:
         out = OrderedDict({})
         row = row.to_dict()
         out['Name'] = row['input']['experiment_name']
+        out['Time'] = str(row['timestamp'])
         out['Hidden_Nodes'] = row['input']['model_args']['hidden_nodes']
         out['Learning_Rate'] = row['input']['model_args']['lr']
         out['Weight_Decay'] = row['input']['model_args']['wd']
@@ -90,4 +91,4 @@ def lambda_handler(event, context):
     return out
 
 # if __name__ =='__main__':
-#     print(App().download_main_as_df())
+    # print(str(App().download_main_as_df().loc[0]['timestamp']))
