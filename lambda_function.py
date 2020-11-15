@@ -39,8 +39,8 @@ class App:
         row = row.to_dict()
         out['Name'] = row['input']['experiment_name']
         out['Hidden_Nodes'] = row['input']['model_args']['hidden_nodes']
-        out['LR'] = row['input']['model_args']['lr']
-        out['WD'] = row['input']['model_args']['wd']
+        out['Learning_Rate'] = row['input']['model_args']['lr']
+        out['Weight_Decay'] = row['input']['model_args']['wd']
         out['Loss'] = row['input']['model_args']['loss_function']
         out['Optim'] = row['input']['model_args']['optimizer_function']
         out['Max_Loss'] = np.round(row['analytics']['max_loss'], 3)
