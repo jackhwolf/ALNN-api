@@ -14,7 +14,7 @@ App contains the main logic for getting/filtering the results data
 class App:
 
     def __init__(self):
-        self.main_key = 'main.csv'
+        self.main_key = 'main.json'
         self.buckets = {
             'main': 'alnn-main-bucket-8nyb87yn8',
             'animations': 'alnn-animations-bucket-8nyb87yn8',
@@ -35,7 +35,6 @@ class App:
         return json.dumps(out)
 
     def format_row(self, row):
-        del row['output']
         out = OrderedDict({})
         row = row.to_dict()
         out['Name'] = row['input']['experiment_name']
@@ -63,8 +62,9 @@ class App:
             tmpfilepath = str(tmpfile.resolve())
             with open(tmpfilepath, 'wb') as f:
                 s3.download_fileobj(self.buckets['main'], self.main_key, f)
-            master = pd.read_csv(tmpfilepath)
-            out = master
+            main = pd.read_json(tmpfilepath)
+            del main['output']
+            out = main
             tmpfile.unlink()
             return out
         except ClientError:
@@ -88,3 +88,6 @@ def lambda_handler(event, context):
         'body': body
     }
     return out
+
+# if __name__ =='__main__':
+#     print(App().download_main_as_df())
