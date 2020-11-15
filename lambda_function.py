@@ -47,7 +47,7 @@ class App:
         out['Max_Loss'] = np.round(row['analytics']['max_loss'], 3)
         out['Avg_Loss'] = np.round(row['analytics']['avg_loss'], 3)
         out['Data'] = row['input']['data']
-        out['Data_Args'] = ', '.join([v for _, v in row['input']['data_args'].items()])
+        out['Data_Args'] = ', '.join([str(v) for _, v in row['input']['data_args'].items()])
         out['Animation'] = self.get_obj_url(self.buckets['animations'], row['cloud_graphs']['animation_key'])
         return out
 
@@ -91,4 +91,4 @@ def lambda_handler(event, context):
     return out
 
 # if __name__ =='__main__':
-    # print(str(App().download_main_as_df().loc[0]['timestamp']))
+#     print(App().get_body())
