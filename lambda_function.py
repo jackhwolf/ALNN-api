@@ -14,7 +14,7 @@ App contains the main logic for getting/filtering the results data
 class App:
 
     def __init__(self):
-        self.main_key = 'main.pkl'
+        self.main_key = 'main.csv'
         self.buckets = {
             'main': 'alnn-main-bucket-8nyb87yn8',
             'animations': 'alnn-animations-bucket-8nyb87yn8',
@@ -26,8 +26,8 @@ class App:
         out = None
         if main is None:
             empty = []
-            empty.append({'r1': 'v1', 'r2': 'https://www.youtube.com/watch?v=ONqETis6nX0'})
-            empty.append({'r1': 'v2', 'r2': 'https://www.youtube.com/watch?v=ONqETis6nX0'})
+            empty.append({'r1': 'v1', 'Animation': 'https://www.youtube.com/watch?v=ONqETis6nX0'})
+            empty.append({'r1': 'v2', 'Animation': 'https://www.youtube.com/watch?v=ONqETis6nX0'})
             out = empty
         else:
             body = [self.format_row(row) for _, row in main.iterrows()]
@@ -63,7 +63,7 @@ class App:
             tmpfilepath = str(tmpfile.resolve())
             with open(tmpfilepath, 'wb') as f:
                 s3.download_fileobj(self.buckets['main'], self.main_key, f)
-            master = pd.read_pickle(tmpfilepath)
+            master = pd.read_csv(tmpfilepath)
             out = master
             tmpfile.unlink()
             return out
