@@ -65,7 +65,7 @@ class App:
                 s3.download_fileobj(self.buckets['main'], self.main_key, f)
             main = pd.read_json(tmpfilepath)
             del main['output']
-            out = main
+            out = main.loc[main.index[::-1]]
             tmpfile.unlink()
             return out
         except ClientError:
@@ -91,4 +91,4 @@ def lambda_handler(event, context):
     return out
 
 # if __name__ =='__main__':
-#     print(App().get_body())
+#     print(App().download_main_as_df())
