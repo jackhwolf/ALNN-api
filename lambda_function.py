@@ -38,11 +38,12 @@ class App:
         out = OrderedDict({})
         row = row.to_dict()
         out['Name'] = row['input']['experiment_name']
-        out['Time'] = str(row['timestamp'])
+        out['Time'] = str(row['timestamp']).split(" ")[0]
         out['Hidden_Nodes'] = row['input']['model_args']['hidden_nodes']
         out['Learning_Rate'] = row['input']['model_args']['lr']
         out['Weight_Decay'] = row['input']['model_args']['wd']
         out['Epochs'] = row['input']['model_args']['epochs']
+        out['Scoring'] = row['input']['model_args']['scoring_heuristic'].split("_")[0]
         out['Loss'] = row['input']['model_args']['loss_function']
         out['Optim'] = row['input']['model_args']['optimizer_function']
         out['Max_Loss'] = np.round(row['analytics']['max_loss'], 3)
@@ -92,4 +93,4 @@ def lambda_handler(event, context):
     return out
 
 # if __name__ =='__main__':
-#     print(App().download_main_as_df())
+#     print(str(App().download_main_as_df().loc[0]['timestamp']).split(" ")[0])
